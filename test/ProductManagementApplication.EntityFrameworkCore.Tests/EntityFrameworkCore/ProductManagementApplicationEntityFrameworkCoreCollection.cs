@@ -1,0 +1,9 @@
+﻿using Xunit;
+
+namespace ProductManagementApplication.EntityFrameworkCore;
+
+[CollectionDefinition(ProductManagementApplicationTestConsts.CollectionDefinitionName)]
+public class ProductManagementApplicationEntityFrameworkCoreCollection : ICollectionFixture<ProductManagementApplicationEntityFrameworkCoreFixture>
+{
+
+}

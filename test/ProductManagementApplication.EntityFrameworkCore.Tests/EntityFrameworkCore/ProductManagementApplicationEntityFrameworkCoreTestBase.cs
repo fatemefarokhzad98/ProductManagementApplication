@@ -1,0 +1,8 @@
+﻿using Volo.Abp;
+
+namespace ProductManagementApplication.EntityFrameworkCore;
+
+public abstract class ProductManagementApplicationEntityFrameworkCoreTestBase : ProductManagementApplicationTestBase<ProductManagementApplicationEntityFrameworkCoreTestModule>
+{
+
+}
