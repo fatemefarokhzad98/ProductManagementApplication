@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductManagementApplication.Categories;
+using ProductManagementApplication.Products;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -24,6 +26,10 @@ public class ProductManagementApplicationDbContext :
     ITenantManagementDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
+
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
+
 
     #region Entities from the modules
 
@@ -62,6 +68,24 @@ public class ProductManagementApplicationDbContext :
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        builder.Entity<Product>(b =>
+        {
+            b.Property(x => x.Name).HasMaxLength(ProductConsts.MaxNameLength)
+            .IsRequired();
+            b.HasIndex(x => x.Name).IsUnique();
+            b.ToTable("Products");
+            b.HasOne(X => X.Category)
+            .WithMany()
+            .HasForeignKey(x => x.CategoryId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
+            
+            
+        });
+        
+        
+
+        
 
         /* Include modules to your migration db context */
 
