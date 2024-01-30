@@ -82,10 +82,18 @@ public class ProductManagementApplicationDbContext :
             
             
         });
-        
-        
+        builder.Entity<Category>(b =>
+        {
+            b.ToTable("Categories");
+            b.Property(x => x.Name)
+            .HasMaxLength(CategoryConsts.MaxNameLength)
+            .IsRequired();
+            b.HasIndex(x => x.Name);
+        });
 
-        
+
+
+
 
         /* Include modules to your migration db context */
 
