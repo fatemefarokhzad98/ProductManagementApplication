@@ -31,8 +31,26 @@ public class ProductManagementApplicationMenuContributor : IMenuContributor
                 "~/",
                 icon: "fas fa-home",
                 order: 0
-            )
-        );
+            ));
+        //context.Menu.AddItem(
+        //          new ApplicationMenuItem(
+        //        "ProductManagement",
+        //  l["Menu:ProductManagement"],
+        //       icon: "fas fa-shopping-cart"
+        //          ).AddItem(
+        //         new ApplicationMenuItem(
+        //      "ProductManagementApplication.Products",
+        //     l["Menu:Products"],
+        //        url: "/Products")));
+        context.Menu.Items.Insert(
+           0,
+           new ApplicationMenuItem(
+            "Products",
+               l["Menu:Products"],
+               "~/",
+               icon: "fas fa-shopping-cart",
+               order: 0
+           ));
 
         if (MultiTenancyConsts.IsEnabled)
         {

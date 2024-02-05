@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductManagementApplication.Categories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -14,11 +15,33 @@ namespace ProductManagementApplication.Products
         
            private readonly IRepository<Product, Guid>
             _productRepository;
+        private readonly IRepository<Category, Guid> _categoryRepository;
+
         public ProductAppService(
-        IRepository<Product, Guid> productRepository)
+        IRepository<Product, Guid> productRepository
+        ,IRepository<Category,Guid> categoryRepository)
         {
             _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
+
+        public async Task CreateAsync(CreateUpdateProductDto input)
+        {
+            await _productRepository.InsertAsync(
+                    ObjectMapper.Map<CreateUpdateProductDto, Product>(input));
+
+        }
+
+        public async Task<ListResultDto<CategoryLookupDto>> GetCategoriesAsync()
+        {
+            var categories = await _categoryRepository.GetListAsync();
+            return new ListResultDto<CategoryLookupDto>(
+            ObjectMapper
+            .Map<List<Category>, List<CategoryLookupDto>>
+           (categories)
+            );
+        }
+
         public async Task<PagedResultDto<ProductDto>> GetListAsync(PagedAndSortedResultRequestDto input)
         {
             var queryable = await _productRepository
@@ -36,6 +59,22 @@ namespace ProductManagementApplication.Products
            (products)
             );
 
+        }
+        public async Task<ProductDto> GetAsync(Guid id)
+        {
+            return ObjectMapper.Map<Product, ProductDto>(
+            await _productRepository.GetAsync(id)
+            );
+        }
+        public async Task UpdateAsync(Guid id, CreateUpdateProductDto
+        input)
+        {
+            var product = await _productRepository.GetAsync(id);
+            ObjectMapper.Map(input, product);
+        }
+        public async Task DeleteAsync(Guid id)
+        {
+            await _productRepository.DeleteAsync(id);
         }
     }
 }
