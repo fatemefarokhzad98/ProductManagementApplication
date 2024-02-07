@@ -15,15 +15,13 @@ namespace ProductManagementApplication.Web.Pages.Products
         public CreateEditProductViewModel Product { get; set; }
 
         public SelectListItem[] Categories { get; set; }
-        private readonly IProductAppService
-       _productAppService;
-        public CreateProductModalModel(
-        IProductAppService productAppService)
+        private readonly IProductAppService _productAppService;
+
+        public CreateProductModalModel(IProductAppService productAppService)
         {
             _productAppService = productAppService;
         }
         public async Task OnGetAsync()
-
         {
             Product = new CreateEditProductViewModel
             {

@@ -34,7 +34,7 @@ public class ProductManagementApplicationMenuContributor : IMenuContributor
             ));
         context.Menu.AddItem(
                   new ApplicationMenuItem(
-                "ProductManagement",
+                "ProductManagementApplication",
           l["Menu:ProductManagement"],
                icon: "fas fa-shopping-cart"
                   ).AddItem(

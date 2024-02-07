@@ -9,6 +9,8 @@ public class ProductManagementApplicationWebAutoMapperProfile : Profile
     public ProductManagementApplicationWebAutoMapperProfile()
     {
         CreateMap<ProductDto, CreateEditProductViewModel>();
+        CreateMap<CreateEditProductViewModel, CreateUpdateProductDto>();
+
     }
         
 }
