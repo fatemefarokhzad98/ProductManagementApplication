@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ProductManagementApplication.Products;
+using ProductManagementApplication.Web.Pages.Products;
 
 namespace ProductManagementApplication.Web;
 
@@ -6,6 +8,7 @@ public class ProductManagementApplicationWebAutoMapperProfile : Profile
 {
     public ProductManagementApplicationWebAutoMapperProfile()
     {
-        //Define your AutoMapper configuration here for the Web project.
+        CreateMap<ProductDto, CreateEditProductViewModel>();
     }
+        
 }

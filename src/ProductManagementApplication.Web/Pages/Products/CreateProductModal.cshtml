@@ -1,10 +1,11 @@
 ﻿@page
 @using Microsoft.AspNetCore.Mvc.Localization
-@using ProductManagement.Localization
+
+@using ProductManagementApplication.Localization
+@using ProductManagementApplication.Web.Pages.Products
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
-@model ProductManagement.Web.Pages.Products.
-CreateProductModalModel
-@inject IHtmlLocalizer<ProductManagementResource> L
+@model CreateProductModalModel
+@inject IHtmlLocalizer<ProductManagementApplicationResource> L
 @{
  Layout = null;
 }
@@ -15,7 +16,6 @@ CreateProductModalModel
  <abp-modal-body>
  <abp-form-content />
  </abp-modal-body>
- <abp-modal-footer buttons="@(AbpModalButtons.
-Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
  </abp-modal>
 </abp-dynamic-form>

@@ -1,3 +1,4 @@
+using AutoMapper.Internal.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -41,7 +42,7 @@ namespace ProductManagementApplication.Web.Pages.Products
         public async Task<IActionResult> OnPostAsync()
         {
             await _productAppService.UpdateAsync(Id,
-               bjectMapper.Map<CreateEditProductViewModel, CreateUpdateProductDto>(Product));
+               ObjectMapper.Map<CreateEditProductViewModel, CreateUpdateProductDto>(Product));
 
 
             return NoContent();
